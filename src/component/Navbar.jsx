@@ -4,15 +4,19 @@ import { LuLogIn } from "react-icons/lu";
 import { MdLightMode } from "react-icons/md";
 import { MdClose } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { BlogContext } from "../context/BlogContext";
 import ProfileDropdown from "./ProfileDropdown"
 const Navbar = () => {
   // context
-  const { auth } = useContext(BlogContext)
-
-
-
+  const { auth, setAuth } = useContext(BlogContext)
+const navigate = useNavigate()
+  // logout
+  const logout = () => {
+    localStorage.removeItem("auth");
+    setAuth("")
+    navigate("/")
+  }
 
   // dropdown state
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
@@ -43,7 +47,7 @@ const Navbar = () => {
       }
     }
     document.addEventListener("click", closedSidebar)
-   
+
   }, [])
 
 
@@ -59,7 +63,7 @@ const Navbar = () => {
           </div>
         </div>
 
-       
+
 
 
         {/* Account and darkmode (Desktop) */}
@@ -77,7 +81,7 @@ const Navbar = () => {
           {auth ? <div ref={profileIcon} onClick={() => setIsOpenDropdown(!isOpenDropdown)} className="rounded-full w-[45px] h-[45px] cursor-pointer bg-[#FF385C] hover:bg-[#FF385C]/90 text-[#FFF] text-2xl flex items-center justify-center font-semibold  "> {auth.name[0].toUpperCase()}</div> : <Link to={"/login"} className="flex items-center gap-2 bg-[#FF385C] text-white px-4 py-2 rounded-full hover:opacity-90 transition cursor-pointer">
             <LuLogIn size={18} /> Login
           </Link>}
-         
+
         </div>
 
 
@@ -131,9 +135,13 @@ const Navbar = () => {
               </nav>
 
               {/* Login Button */}
-              <Link to={"/login"} className="flex items-center justify-center gap-2 bg-[#FF385C] text-white px-4 py-2 rounded-md hover:opacity-90 transition mt-3  cursor-pointer">
+              {auth ? <div
+              onClick={logout}
+              className="flex items-center justify-center gap-2 bg-[#FF385C] text-white px-4 py-2 rounded-md hover:opacity-90 transition mt-3  cursor-pointer">
+                <LuLogIn size={18} /> Logout
+              </div> : <Link to={"/login"} className="flex items-center justify-center gap-2 bg-[#FF385C] text-white px-4 py-2 rounded-md hover:opacity-90 transition mt-3  cursor-pointer">
                 <LuLogIn size={18} /> Login
-              </Link>
+              </Link>}
             </div>
           </div>
         )}

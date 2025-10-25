@@ -67,7 +67,7 @@ const Signup = () => {
       await setDoc(userdoc, user)
 
       // alert for success
-      toast.success("Signup Successfuly!");
+      toast.success("Signup Successfully!");
 
       // empty signup state
       setSignup({

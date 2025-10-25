@@ -38,7 +38,7 @@ const Login = () => {
       // get user form store
       const userdoc = doc(fireDB, "users", userAuth.user.uid)
       const user = await getDoc(userdoc);
-      toast.success("Login Successfuly!");
+      toast.success("Login Successfully!");
 
    if(user.exists()){
     const data = user.data()

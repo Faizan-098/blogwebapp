@@ -9,7 +9,7 @@ const ProfileDropdown = () => {
   // navigate
   const navigate = useNavigate();
     // logout
-    const logout = ()=>{
+   const logout = ()=>{
       localStorage.removeItem("auth");
       setAuth("")
        navigate("/")
