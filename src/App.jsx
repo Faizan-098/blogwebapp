@@ -6,7 +6,7 @@ import { Route } from "react-router";
 import Signup from "./pages/registeration/Signup";
 import Login from "./pages/registeration/Login"
 import Nopage from "./pages/Nopage";
-import Dashboard from "./pages/dashboard/dashboard";
+import Dashboard from "./pages/dashboard/Dashboard";
 import Createblog from "./pages/dashboard/Createblog";
 import MyState from "./context/MyState";
 import Detailpage from "./pages/Detailpage";
